@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unknown-property */
 import React from "react";
 import { easing } from "maath";
 import { useSnapshot } from "valtio";
@@ -40,7 +38,6 @@ const Shirt = () => {
             rotation={[0, 0, 0]}
             scale={0.2}
             map={logoTexture}
-            // map-anisotropy={16}
             depthTest={false}
             depthWrite={true}
           />

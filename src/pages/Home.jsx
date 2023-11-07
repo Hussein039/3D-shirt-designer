@@ -12,20 +12,20 @@ import {
 const Home = () => {
   const snap = useSnapshot(state);
   return (
-    <AnimatePresence>
+    <AnimatePresence className="bg-black">
       {snap.intro && (
         <motion.section className="home" {...slideAnimation("left")}>
-          <motion.header {...slideAnimation("down")}>
+          {/* <motion.header {...slideAnimation("down")}>
             <img
               src="./logo.png"
               alt="logo"
               className="w-20 h-30 object-contain"
             />
-          </motion.header>
+          </motion.header> */}
           <motion.div className="home-content" {...headContainerAnimation}>
             <motion.div {...headTextAnimation}>
               <h1 className="head-text">
-                LET'S <br className="xl:block hidden" /> START CUSTOMIZING.
+                Design Your <br className="xl:block hidden" /> Imagination.
               </h1>
             </motion.div>
             <motion.div
@@ -33,8 +33,8 @@ const Home = () => {
               className="flex flex-col gap-5"
             >
               <p className="max-w-md font-normal text-gray-600 text-base">
-                Customize your own unique shirt with our 3D customization
-                tool. <strong>Unleash your imagination.</strong> and define your
+                Dive into the realm of creativity with our cutting-edge 3D customization tool!
+                <strong>Unleash your imagination.</strong> and define your
                 own style.
               </p>
               <CustomButton
@@ -52,3 +52,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
