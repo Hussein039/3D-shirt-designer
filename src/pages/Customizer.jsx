@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-unknown-property */
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
-import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
-  AIPicker,
   ColorPicker,
   FilePicker,
   Tab,
@@ -20,8 +16,6 @@ import {
 const Customizer = () => {
   const snap = useSnapshot(state);
   const [file, setfile] = useState("");
-  const [prompt, setprompt] = useState("");
-  const [generatingImg, setgeneratingImg] = useState(false);
   const [activeEditor, setactiveEditor] = useState("");
   const [activeFilter, setactiveFilter] = useState({
     logoShirt: true,
@@ -35,43 +29,11 @@ const Customizer = () => {
         return <ColorPicker />;
       case "filepicker":
         return <FilePicker file={file} setfile={setfile} readfile={readfile} />;
-      case "aipicker":
-        return (
-          <AIPicker
-            prompt={prompt}
-            setprompt={setprompt}
-            generatingImg={generatingImg}
-            handleSubmit={handleSubmit}
-          />
-        );
       default:
         return null;
     }
   };
 
-  const handleSubmit = async (type) => {
-    if (!prompt) return alert("Please Enter a Prompt!");
-    try {
-      //Backend DALL.E
-      setgeneratingImg(true);
-
-      const response = await fetch(`http://localhost:5000/api/v1/dalle`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-      });
-      const data = await response.json();
-
-      handleDecals(type, `data:image/png;base64,${data.photo}`);
-    } catch (error) {
-      alert(error);
-    } finally {
-      setgeneratingImg(false);
-      setactiveEditor("");
-    }
-  };
 
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];

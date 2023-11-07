@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { motion, AnimatePresence } from "framer-motion";
 import { useSnapshot } from "valtio";
 import state from "../store";
@@ -18,9 +17,9 @@ const Home = () => {
         <motion.section className="home" {...slideAnimation("left")}>
           <motion.header {...slideAnimation("down")}>
             <img
-              src="./threejs.png"
+              src="./logo.png"
               alt="logo"
-              className="w-8 h-8 object-contain"
+              className="w-20 h-30 object-contain"
             />
           </motion.header>
           <motion.div className="home-content" {...headContainerAnimation}>
